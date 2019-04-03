@@ -1,0 +1,150 @@
+策略模式
+
+一.概念
+
+1.封装变化的概念
+
+2.编程中使用接口，而不是使用具体的实现类（面向接口编程）
+
+
+二.组成
+
+1.抽象策略角色
+   
+   这是一个抽象的角色，通常情况下使用接口或者抽象类去实现。
+   
+2.具体策略角色
+   
+   包装了具体的行为，实现了上面的抽象接口或实现类
+   
+3.环境角色
+
+  内部会抽象角色的引用，给客户端调用。
+  
+  
+三.编程步骤
+
+1.定义抽象策略角色（为策略对象定义一个公共的接口）
+
+2.编写具体策略角色（实际上就是实现上面定义的公共接口）
+
+3.定义环境角色，内部持有一个策略类的引用
+
+
+
+四.实例
+
+实现一个加减乘除的功能
+
+1.定义抽象策略角色
+
+  public interface Strategy{
+  
+       //定义了实现两个数可以计算
+	   public int calc (int num1,int num2);
+	   
+  }
+
+
+2.定义具体策略
+  
+  2.1 加法策略：
+  
+  public class AddStrategy implements Strategy{
+     
+ 	 public int calc (int num1,int num2){
+	 
+	      return num1 + num2;
+		  
+	 }
+      
+  }
+
+
+  2.2 减法策略
+  
+  public class SubtractStrategy implements Strategy{
+  
+      public int calc (int num1,int num2){
+	 
+	      return num1 - num2;
+		  
+	 }
+  
+  }
+
+ 
+ 2.3 环境角色
+ 
+ public class Enviroment{
+     
+	 //持有对策略类的引用
+	 private Strategy strategy;
+	 
+	 public Enviroment(Strategy strategy){
+	   
+	     this.strategy = strategy;
+	 
+	 }
+     
+	 public int calulate(int a,int b){
+	 
+	     return strategy.calc(a,b);
+	 
+	 }
+ }
+ 
+ 
+ 2.4 测试类
+ 
+ public class Test{
+    
+	public static void main(String[] args){
+	
+	    Enviroment env = new Enviroment(new AddStrategy())'
+		
+		int result = env.calulate();
+		
+		System.out.println(result);
+	  
+	}
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
